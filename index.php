@@ -16,7 +16,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$result = $conn->query("SELECT * FROM kiroku ORDER BY id DESC");
+$result = $conn->query("SELECT 
+    k.id, 
+    k.jugyoin_id, 
+    e.sei, 
+    e.mei, 
+    k.start_work, 
+    k.end_work 
+    FROM kiroku k
+    LEFT JOIN employees e ON k.jugyoin_id = e.jugyoin_id
+    ORDER BY k.id DESC;");
 ?>
 
 <!DOCTYPE html>
@@ -51,6 +60,7 @@ $result = $conn->query("SELECT * FROM kiroku ORDER BY id DESC");
                         <tr>
                             <th>ID</th>
                             <th>従業員ID</th>
+                            <th>従業員氏名</th>
                             <th>出勤時刻</th>
                             <th>退勤時刻</th>
                         </tr>
@@ -60,6 +70,7 @@ $result = $conn->query("SELECT * FROM kiroku ORDER BY id DESC");
                         <tr>
                             <td><?= $row['id'] ?></td>
                             <td><span class="badge-id"><?= $row['jugyoin_id'] ?></span></td>
+                            <td><?= htmlspecialchars($row['sei'] . ' ' . $row['mei']) ?></td>
                             <td class="time-in"><?= $row['start_work'] ?></td>
                             <td class="time-out"><?= $row['end_work'] ?></td>
                         </tr>
