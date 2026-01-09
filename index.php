@@ -25,11 +25,11 @@ $result = $conn->query("SELECT * FROM kiroku ORDER BY id DESC");
 
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <title>簡易勤怠管理</title>
     <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
     <h2>勤怠入力</h2>
