@@ -4,3 +4,9 @@ CREATE TABLE kiroku (
     start_work DATETIME,
     end_work DATETIME
 );
+
+CREATE TABLE employees (
+    jugyoin_id VARCHAR(20) PRIMARY KEY,
+    sei VARCHAR(50) NOT NULL,
+    mei VARCHAR(50) NOT NULL
+);
