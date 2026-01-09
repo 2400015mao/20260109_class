@@ -1,0 +1,110 @@
+/* --- 共通設定 --- */
+:root {
+    --bg-color: #F8FAFC;         /* 統一背景色 */
+    --card-bg: #FFFFFF;
+    --text-dark: #1E293B;
+    --text-muted: #64748B;
+    
+    /* 3つのイメージカラー */
+    --color-green: #10B981;
+    --color-blue: #3B82F6;
+    --color-orange: #F59E0B;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* --- ナビゲーション --- */
+.navbar {
+    background: #FFFFFF;
+    border-bottom: 1px solid #E2E8F0;
+    padding: 0 20px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo { font-weight: bold; font-size: 1.1rem; color: var(--text-dark); }
+
+.nav-links { list-style: none; display: flex; gap: 20px; margin: 0; }
+.nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; }
+
+/* オレンジ色のページ（一覧）でのアクティブ表示 */
+.page-records .nav-links a.active {
+    color: var(--color-orange);
+    border-bottom: 2px solid var(--color-orange);
+    padding-bottom: 18px;
+}
+
+/* --- コンテンツレイアウト --- */
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.input-card {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.inline-form { display: flex; align-items: flex-end; gap: 20px; }
+.input-group { display: flex; flex-direction: column; gap: 5px; }
+.input-group input {
+    padding: 8px 12px;
+    border: 1px solid #CBD5E1;
+    border-radius: 4px;
+}
+
+.btn-start { background: var(--color-green); color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; }
+.btn-end   { background: var(--color-blue); color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; }
+
+/* --- テーブルデザイン (オレンジ強調) --- */
+.table-wrapper {
+    background: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: var(--color-orange); /* ここでオレンジを使用 */
+    color: white;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #E2E8F0;
+}
+
+tbody tr:hover { background-color: #FFFBEB; } /* ほのかなオレンジのホバー効果 */
+
+.badge-id {
+    background: #F1F5F9;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+}

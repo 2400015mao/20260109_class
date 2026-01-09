@@ -25,32 +25,67 @@ $result = $conn->query("SELECT * FROM kiroku ORDER BY id DESC");
 
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset="UTF-8">
-    <title>簡易勤怠管理</title>
+    <title>全記録一覧 - 勤怠管理システム</title>
     <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
-<body>
-    <h2>勤怠入力</h2>
-    <form method="POST">
-        従業員ID: <input type="text" name="jugyoin_id" required>
-        <button type="submit" name="action_start">出勤</button>
-        <button type="submit" name="action_end">退勤</button>
-    </form>
+<body class="page-records">
+    <nav class="navbar">
+        <div class="nav-container">
+            <span class="nav-logo">勤怠管理システム</span>
+            <ul class="nav-links">
+                <li><a href="#" class="link-start">出勤入力</a></li>
+                <li><a href="#" class="link-end">退勤入力</a></li>
+                <li><a href="#" class="active">全記録一覧</a></li>
+            </ul>
+        </div>
+    </nav>
 
-    <hr>
-    <h2>全記録一覧</h2>
-    <table border="1">
-        <tr><th>ID</th><th>従業員ID</th><th>出勤時刻</th><th>退勤時刻</th></tr>
-        <?php while($row = $result->fetch_assoc()): ?>
-        <tr>
-            <td><?= $row['id'] ?></td>
-            <td><?= $row['jugyoin_id'] ?></td>
-            <td><?= $row['start_work'] ?></td>
-            <td><?= $row['end_work'] ?></td>
-        </tr>
-        <?php endwhile; ?>
-    </table>
+    <main class="container">
+        <!-- <section class="input-card">
+            <h3>打刻クイック入力</h3>
+            <form method="POST" class="inline-form">
+                <div class="input-group">
+                    <label>従業員ID</label>
+                    <input type="text" name="jugyoin_id" placeholder="例: 12345" required>
+                </div>
+                <div class="button-group">
+                    <button type="submit" name="action_start" class="btn-start">出勤</button>
+                    <button type="submit" name="action_end" class="btn-end">退勤</button>
+                </div>
+            </form>
+        </section> -->
+
+        <section class="list-section">
+            <div class="section-header">
+                <h2>全記録一覧</h2>
+            </div>
+            
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>従業員ID</th>
+                            <th>出勤時刻</th>
+                            <th>退勤時刻</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while($row = $result->fetch_assoc()): ?>
+                        <tr>
+                            <td><?= $row['id'] ?></td>
+                            <td><span class="badge-id"><?= $row['jugyoin_id'] ?></span></td>
+                            <td class="time-in"><?= $row['start_work'] ?></td>
+                            <td class="time-out"><?= $row['end_work'] ?></td>
+                        </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
