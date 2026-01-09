@@ -1,11 +1,9 @@
-/* --- 共通設定 --- */
 :root {
-    --bg-color: #F8FAFC;         /* 統一背景色 */
+    --bg-color: #F8FAFC;
     --card-bg: #FFFFFF;
     --text-dark: #1E293B;
     --text-muted: #64748B;
     
-    /* 3つのイメージカラー */
     --color-green: #10B981;
     --color-blue: #3B82F6;
     --color-orange: #F59E0B;
@@ -19,7 +17,6 @@ body {
     line-height: 1.6;
 }
 
-/* --- ナビゲーション --- */
 .navbar {
     background: #FFFFFF;
     border-bottom: 1px solid #E2E8F0;
@@ -43,14 +40,12 @@ body {
 .nav-links { list-style: none; display: flex; gap: 20px; margin: 0; }
 .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; }
 
-/* オレンジ色のページ（一覧）でのアクティブ表示 */
 .page-records .nav-links a.active {
     color: var(--color-orange);
     border-bottom: 2px solid var(--color-orange);
     padding-bottom: 18px;
 }
 
-/* --- コンテンツレイアウト --- */
 .container {
     max-width: 1000px;
     margin: 40px auto;
@@ -76,7 +71,6 @@ body {
 .btn-start { background: var(--color-green); color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; }
 .btn-end   { background: var(--color-blue); color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; }
 
-/* --- テーブルデザイン (オレンジ強調) --- */
 .table-wrapper {
     background: var(--card-bg);
     border-radius: 8px;
@@ -90,7 +84,7 @@ table {
 }
 
 thead {
-    background-color: var(--color-orange); /* ここでオレンジを使用 */
+    background-color: var(--color-orange);
     color: white;
 }
 
@@ -100,7 +94,7 @@ th, td {
     border-bottom: 1px solid #E2E8F0;
 }
 
-tbody tr:hover { background-color: #FFFBEB; } /* ほのかなオレンジのホバー効果 */
+tbody tr:hover { background-color: #FFFBEB; }
 
 .badge-id {
     background: #F1F5F9;

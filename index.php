@@ -1,25 +1,21 @@
 <?php
 $conn = new mysqli("localhost", "kintaiuser", "kintaipass123", "kintaidb");
 
-// 1. 出勤・退勤ボタンが押された時の処理
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['jugyoin_id'];
     $now = date("Y-m-d H:i:s");
 
     if (isset($_POST['action_start'])) {
-        // 出勤：新しいレコードを作成
         $stmt = $conn->prepare("INSERT INTO kiroku (jugyoin_id, start_work) VALUES (?, ?)");
         $stmt->bind_param("ss", $id, $now);
         $stmt->execute();
     } elseif (isset($_POST['action_end'])) {
-        // 退勤：その従業員の最新のレコード（end_workが空のもの）を更新
         $stmt = $conn->prepare("UPDATE kiroku SET end_work = ? WHERE jugyoin_id = ? AND end_work IS NULL ORDER BY id DESC LIMIT 1");
         $stmt->bind_param("ss", $now, $id);
         $stmt->execute();
     }
 }
 
-// 2. 全記録一覧の取得
 $result = $conn->query("SELECT * FROM kiroku ORDER BY id DESC");
 ?>
 
@@ -36,28 +32,14 @@ $result = $conn->query("SELECT * FROM kiroku ORDER BY id DESC");
         <div class="nav-container">
             <span class="nav-logo">勤怠管理システム</span>
             <ul class="nav-links">
-                <li><a href="#" class="link-start">出勤入力</a></li>
-                <li><a href="#" class="link-end">退勤入力</a></li>
+                <li><a href="enter.php" class="link-start">出勤入力</a></li>
+                <li><a href="end.php" class="link-end">退勤入力</a></li>
                 <li><a href="#" class="active">全記録一覧</a></li>
             </ul>
         </div>
     </nav>
 
     <main class="container">
-        <!-- <section class="input-card">
-            <h3>打刻クイック入力</h3>
-            <form method="POST" class="inline-form">
-                <div class="input-group">
-                    <label>従業員ID</label>
-                    <input type="text" name="jugyoin_id" placeholder="例: 12345" required>
-                </div>
-                <div class="button-group">
-                    <button type="submit" name="action_start" class="btn-start">出勤</button>
-                    <button type="submit" name="action_end" class="btn-end">退勤</button>
-                </div>
-            </form>
-        </section> -->
-
         <section class="list-section">
             <div class="section-header">
                 <h2>全記録一覧</h2>
